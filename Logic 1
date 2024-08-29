@@ -1,0 +1,54 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int n = scanner.nextInt();
+        int k = scanner.nextInt();
+
+        
+        int[] a_list = new int[n];
+        for (int i = 0; i < n; i++) {
+            a_list[i] = scanner.nextInt();
+        }
+
+        
+        double[] average = new double[n - k + 1];
+        for (int i = 0; i <= n - k; i++) {
+            double sum = 0;
+            for (int j = 0; j < k; j++) {
+                sum += a_list[i + j];
+            }
+            average[i] = sum / k;
+        }
+
+       
+        double ans_max = average[0];
+        for (int i = 1; i < average.length; i++) {
+            if (average[i] > ans_max) {
+                ans_max = average[i];
+            }
+        }
+
+        
+        int ans_first_max = 0;
+        for (int i = 0; i < average.length; i++) {
+            if (average[i] == ans_max) {
+                break;
+            }
+            ans_first_max++;
+        }
+
+       
+        int ans_count = 0;
+        for (double v : average) {
+            if (v == ans_max) {
+                ans_count++;
+            }
+        }
+
+       
+        System.out.println(ans_count + " " + (ans_first_max + 1));
+    }
+}
