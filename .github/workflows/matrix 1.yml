@@ -4,16 +4,17 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
+        // Nhập n và k
         int n = scanner.nextInt();
         int k = scanner.nextInt();
 
-        
+        // Nhập danh sách các số nguyên
         int[] a_list = new int[n];
         for (int i = 0; i < n; i++) {
             a_list[i] = scanner.nextInt();
         }
 
-        
+        // Tính toán các giá trị trung bình
         double[] average = new double[n - k + 1];
         for (int i = 0; i <= n - k; i++) {
             double sum = 0;
@@ -23,7 +24,7 @@ public class Main {
             average[i] = sum / k;
         }
 
-       
+        // Tìm giá trị trung bình lớn nhất
         double ans_max = average[0];
         for (int i = 1; i < average.length; i++) {
             if (average[i] > ans_max) {
@@ -31,7 +32,7 @@ public class Main {
             }
         }
 
-        
+        // Tìm chỉ số đầu tiên của giá trị lớn nhất
         int ans_first_max = 0;
         for (int i = 0; i < average.length; i++) {
             if (average[i] == ans_max) {
@@ -40,7 +41,7 @@ public class Main {
             ans_first_max++;
         }
 
-       
+        // Đếm số lần giá trị lớn nhất xuất hiện
         int ans_count = 0;
         for (double v : average) {
             if (v == ans_max) {
@@ -48,7 +49,10 @@ public class Main {
             }
         }
 
-       
+        // In kết quả
         System.out.println(ans_count + " " + (ans_first_max + 1));
+
+        // Đóng Scanner
+        scanner.close();
     }
 }
